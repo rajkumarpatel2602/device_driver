@@ -4,3 +4,8 @@
 
 AbhishekCSE Practicals:
 
+netlink
+https://drive.google.com/drive/folders/1-oFZCFx49gLpFtcVFG6fY2x_AWYCCRcl
+
+
+
