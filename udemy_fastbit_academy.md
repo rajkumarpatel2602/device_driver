@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/0c3c1add-d47e-405c-8ad0-8ab495dd8385)
+![image](https://github.com/user-attachments/assets/43b861fc-cf9d-4d41-8435-11f34b30a5c4)![image](https://github.com/user-attachments/assets/0c3c1add-d47e-405c-8ad0-8ab495dd8385)
 
 Minor numbers help to differencitate between device file. By major, VFS choses device file, and with minor number, which instance or which device file is used by user, that's recognized by driver. So minor are used for driver to differentiate device instance requests, and major are used by vfs for systemcall or user call forwarding which are initiated by device file.
 
@@ -30,12 +30,22 @@ Important data structures for file oeprations/ device file operations.
 
 Cdev(points to file ops supported), file_ops(mentions supported file ops), file(allocated on opening of a file and stays in kernel memory. Holds process interaction with an open file), inode(stored on disk, and unique per file. Hold's file metadata)
 
-
 ![image](https://github.com/user-attachments/assets/2b6be25e-3b46-40bb-b6f0-2557f724062a)
 
 ![image](https://github.com/user-attachments/assets/b7dc3830-8694-489d-9e11-f1f353c90112)
 
+VFS objects are file_ops, cdev, file, inode.
+
 ![image](https://github.com/user-attachments/assets/8cc0936f-af36-42c2-8a3d-0a80fccb5426)
+
+When device file is created, vfs functions are called. Vfs do some association using some functions as shown above.
+
+Steps:
+when device file is created (udevd does this based on indication from loading driver module via event)
+	- A file is created (an inode is created and stored in memory)
+	- Inode is initialised with some default values for device number and dummy file operation methods, as shown above.
+ 
+Now wait for open call… story starts there of actual linking of driver methods.
 
 ![image](https://github.com/user-attachments/assets/70889418-715b-4b3c-8fd5-2f5d21c90c85)
 
@@ -48,6 +58,8 @@ Cdev(points to file ops supported), file_ops(mentions supported file ops), file(
 ![image](https://github.com/user-attachments/assets/2f2dd9bc-a3d1-4c7d-b582-22802fe84a13)
 
 ![image](https://github.com/user-attachments/assets/f8c55138-d6dd-4e04-a0e3-34cfb7de5211)
+
+Complete scenario
 
 ![image](https://github.com/user-attachments/assets/16c91427-a807-470b-a010-6b7f868bb5b8)
 
@@ -80,6 +92,8 @@ Cdev(points to file ops supported), file_ops(mentions supported file ops), file(
 ![image](https://github.com/user-attachments/assets/64c798f4-df55-436f-8189-adea7c25cd85)
 
 ![image](https://github.com/user-attachments/assets/07627862-8d7d-43ef-a0b8-73a40b5aa669)
+
+Export major minor info to udevd by using kernel apis.
 
 ![image](https://github.com/user-attachments/assets/c5f47364-9294-4d44-b678-3f515e7f2db6)
 
