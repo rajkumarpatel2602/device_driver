@@ -1,14 +1,22 @@
 ![image](https://github.com/user-attachments/assets/0c3c1add-d47e-405c-8ad0-8ab495dd8385)
 
+Minor numbers help to differencitate between device file. By major, VFS choses device file, and with minor number, which instance or which device file is used by user, that's recognized by driver. So minor are used for driver to differentiate device instance requests, and major are used by vfs for systemcall or user call forwarding which are initiated by device file.
+
 ![image](https://github.com/user-attachments/assets/1808d565-a6b2-4674-9118-06cf9de6f3c9)
 
 ![image](https://github.com/user-attachments/assets/05f0657a-f5d7-4406-80c6-8bd86508b01d)
 
 ![image](https://github.com/user-attachments/assets/cb09e5c0-4b02-49d7-9fa4-8cd160bba4d9)
 
+Driver need to ask kernel for device number, vfs connectiona nnd file creation.
+
 ![image](https://github.com/user-attachments/assets/ea7c5177-8d03-43b1-bec6-0df922dfc509)
 
+important headers
+
 ![image](https://github.com/user-attachments/assets/e2c7252e-86c9-456c-afd0-bdbf3bc405db)
+
+eeprom is the name to idenityf device number range.
 
 ![image](https://github.com/user-attachments/assets/8332bbc5-e6d6-4576-86e8-7d54fa45261e)
 
@@ -17,6 +25,11 @@
 ![image](https://github.com/user-attachments/assets/e4fa8788-7009-4c4f-a893-484aa5e1291e)
 
 ![image](https://github.com/user-attachments/assets/82718baf-2595-4d38-a1b4-4680a9000385)
+
+Important data structures for file oeprations/ device file operations.
+
+Cdev(points to file ops supported), file_ops(mentions supported file ops), file(allocated on opening of a file and stays in kernel memory. Holds process interaction with an open file), inode(stored on disk, and unique per file. Hold's file metadata)
+
 
 ![image](https://github.com/user-attachments/assets/2b6be25e-3b46-40bb-b6f0-2557f724062a)
 
