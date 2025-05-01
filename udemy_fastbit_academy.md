@@ -219,3 +219,41 @@ Driver specific private data:
 Makefile - just name change
 ![image](https://github.com/user-attachments/assets/79e769e8-85f4-436d-9a2d-c7d3dca7ef1a)
 
+Allocation for chardev region: 4 devices, with base as 0. means major will be dynamically allocated, and point to DYN_MAJOR_NO:0, by changing 0 to 1, 2, 3 one can get other devices. 
+![image](https://github.com/user-attachments/assets/e592ab51-ca78-41bb-aa8e-f3b589905762)
+![image](https://github.com/user-attachments/assets/102d857e-0095-4264-9e81-3a5ca3d37dcd)
+
+cdev_add() and device_create(), MAJOR() and MINOR() are to be called in loop. However, alloc_chardev_region() and class_create() doesn't required to be called in loop. took out class create before cdev_add()
+![image](https://github.com/user-attachments/assets/efd48727-f153-4832-aa6e-78dc573e4d0a)
+![image](https://github.com/user-attachments/assets/4de0fcbe-2721-4779-9242-24504282bf07)
+![image](https://github.com/user-attachments/assets/39ad4069-f71b-490e-bc1a-78bb4ea3a111)
+
+device_destroy() can be called on invalid dev_t, same for cdev_del()
+![image](https://github.com/user-attachments/assets/db033ac2-762a-489f-b181-01e0d15d0d47)
+![image](https://github.com/user-attachments/assets/ef54b804-d4fb-4ae7-b583-bb35e311f8dd)
+![image](https://github.com/user-attachments/assets/688b0b99-ab47-4f74-a143-ded1118dacbf)
+reused in cleanup function.
+![image](https://github.com/user-attachments/assets/110e192d-1a7a-47af-98fc-44bf56179b5a)
+
+On each open call, and new kernel file object is created. inode holds unique information related to device.
+e.g. i_rdev for dev_t type. one can get minor from this. i_cdev contains per device, cdev related info. from this cdev address from address, private device data structure or container base address can be accessed using container_of() macro.
+![image](https://github.com/user-attachments/assets/b802fd24-3364-4dfa-b854-5eb249516d2f)
+![image](https://github.com/user-attachments/assets/045db4eb-f205-4886-b8b9-f6d3167c4005)
+![image](https://github.com/user-attachments/assets/95deba36-32ee-46bf-9de0-9fc1aa0e5ee1)
+![image](https://github.com/user-attachments/assets/5850a1cf-b31b-46d4-ba34-71a297316dd2)
+![image](https://github.com/user-attachments/assets/0895e295-9877-4901-9b28-5fbf1eaa1b35)
+![image](https://github.com/user-attachments/assets/5e48108c-7477-4427-9d33-3a25826936c7)
+![image](https://github.com/user-attachments/assets/399fc73f-82b0-44eb-97c5-af494e7cb289)
+vfs doesn't supply inode to read and write method, so we can't get this info by container_of() in these api. need to save this from other methods.
+where to use?
+use in file object which vfs supplies to other method. there's a private_data field, which can be used.
+![image](https://github.com/user-attachments/assets/860a58bb-0ec1-4b0b-9d8e-c40bb9898099)
+
+Premission checking is also need to be implemented here in open()
+![image](https://github.com/user-attachments/assets/9985e6ae-06bf-4255-9776-f61991e62a6b)
+
+
+vfs calls driver's open method, with information of inode and file pointer.
+
+
+
