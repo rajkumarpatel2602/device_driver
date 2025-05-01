@@ -309,6 +309,7 @@ How to register platform device?
 
 Board file approach
 ![image](https://github.com/user-attachments/assets/23231c42-8c0d-4c03-867f-80106e0b6823)
+
 Device tree
 ![image](https://github.com/user-attachments/assets/86f5e5be-b287-4c21-b4da-8da84c282ee7)
 
@@ -316,76 +317,100 @@ Where board files are placed?
 per device in arch folder all board files are preesnt. These are part of kernel source, which is a bad bad idea. supported before 3.6 kernel.
 ![image](https://github.com/user-attachments/assets/55680091-2c4c-4aa1-972f-b1f4393cba67)
 ![image](https://github.com/user-attachments/assets/ccce2299-b931-4502-b3bd-27692291c2e2)
+
 Whenever linux kernel detects a board, it jumps to devxxxx_init() function in its board file. It includes platform devices configurations, resources.
 ![image](https://github.com/user-attachments/assets/84a6c7cc-e560-4ced-a6cb-ea9e58ae01f3)
+
 newer kernel has removed platform or board specific board files, rather it has just kept a generic board file.
 ![image](https://github.com/user-attachments/assets/ebaea0b3-b093-45c5-af5c-34ed75a726c9)
+
 this includes generic info for various board, but exact board specific details are instantiated from device tree. you won't find no platform device structure.
 ![image](https://github.com/user-attachments/assets/5521ae1b-6652-4914-ad6d-fb8e4a10bba1)
 
 Example platform driver
 ![image](https://github.com/user-attachments/assets/e374aeca-994f-4825-a69b-39466e8f857a)
 ![image](https://github.com/user-attachments/assets/93f03654-95e0-4de3-b823-e48a3595687e)
+
 TI gives drivers for platform devices/driver for peripherals.
 ![image](https://github.com/user-attachments/assets/5f33e955-3a0e-4bf0-a579-d16cd724feb1)
+
 Red circle is i2c (peripheral) devices / i2c client devices. Yellow circle is i2c bus controller / i2c host controller / i2c cotroller.
 ![image](https://github.com/user-attachments/assets/ccf6c80c-4080-4e37-b46e-3eb418ab8270)
+
 I am writting i2c device driver - writing driver for i2c device which is connected to i2c controller over i2c bus. i2c controller driver is most probably given by vendor itself. these are controller driver. so controller drivers are mostly available, but device drivers are to be written.
+
 ![image](https://github.com/user-attachments/assets/fdbd2789-1420-4299-909a-36278115ead8)
 
 Registering platform device and platform driver
 Platform driver
 ![image](https://github.com/user-attachments/assets/38910ead-c350-4a55-a4f8-ba70f809b627)
 ![image](https://github.com/user-attachments/assets/57ed26b3-c1cf-4d3a-8a98-a1d3cf012a5e)
+
 Platform device. call this function to register from board file or device setup file.
 ![image](https://github.com/user-attachments/assets/ad28bbc8-25ab-4c04-a6a3-93c9762e5c03)
 ![image](https://github.com/user-attachments/assets/48fc42c0-34fa-4ae6-b544-b108107d49e6)
+
 How correct driver is autoloaded whenever one add a new platform device? kernel use some matching here. we are just supposed to take care of registering right way.
 ![image](https://github.com/user-attachments/assets/c97cd61b-6860-42a0-b361-93732b3cb88e)
+
 Matching mechanism. Every bus type has its match function.
 ![image](https://github.com/user-attachments/assets/495587f6-5e90-4e38-9053-0f0dbea26c79)
+
 Name based matching mechanism
 ![image](https://github.com/user-attachments/assets/1e5c2d94-431b-416b-a1ec-859d7a7819ce)
+
 when match detected, bus driver management code determines driver for newly added device, and that driver's probe function is called with this device as an arg.
 ![image](https://github.com/user-attachments/assets/e0a37d23-e370-469d-a4c8-c007a60acbf3)
 ![image](https://github.com/user-attachments/assets/6513e0f5-33eb-4e50-8f85-d1abc39e0433)
 ![image](https://github.com/user-attachments/assets/2ef63e79-6afe-4917-93fe-2d532dd5aff0)
+
 Probe function is very important // binding of device to kernel framework
 ![image](https://github.com/user-attachments/assets/b01895c8-d83b-4dfd-b026-fd28cfa9878d)
+
 Remove function // unbinding of device to kernel framework
 ![image](https://github.com/user-attachments/assets/16631ee7-b976-438e-b71d-a65c05efcc05)
+
 Probe an Remove are mandatory, where as other can be implemented as per need.
 ![image](https://github.com/user-attachments/assets/9ceaf742-eee4-4276-b8d0-74346b6897ba)
 ![image](https://github.com/user-attachments/assets/82cb9628-ad6c-400b-a765-4b2b1bf0c611)
 
 Exercise: implement psuedo char driver as platform driver
 ![image](https://github.com/user-attachments/assets/d39d0370-acd6-48cc-abad-c5c889c6613f)
+
 2 files. 1 module for platform driver, 2nd module file for platform device setup
 ![image](https://github.com/user-attachments/assets/f35ac4d0-3c47-4fb7-a5b8-1f3947772f7b)
+
 2 more functions are required for platform driver
 driver		![image](https://github.com/user-attachments/assets/439b809e-924f-4ffc-936a-5af4875d796b)
 device setup	![image](https://github.com/user-attachments/assets/1c234006-f9c7-4b3a-afdb-1056d3905820)
 
 Device setup module
 ![image](https://github.com/user-attachments/assets/55374234-f342-4a3d-bd46-261128f1724e)
+
 Skeleton
 ![image](https://github.com/user-attachments/assets/1988d607-a60d-4ec7-af80-cb8754d0fbab)
 ![image](https://github.com/user-attachments/assets/27d8c3aa-5ce7-4ad6-a7ea-eb9d62c9f09b)
+
 Earlier we passed device private data as different structure. this will be now called as device platform data. during registration, we should register data as well.
 ![image](https://github.com/user-attachments/assets/2f34459f-db66-4adb-b92a-dd0dbe995632)
+
 platform.h to contain platform data.
 ![image](https://github.com/user-attachments/assets/ab8aa708-9f8a-4b7d-b779-8f5042db13d9)
 ![image](https://github.com/user-attachments/assets/45e331db-9aa3-4784-a43c-289deb18f792)
+
 where to store? platform_device -> dev structure -> platform_data
 ![image](https://github.com/user-attachments/assets/0297d9ea-afdb-4b7b-9c07-11d9bddd40cb)
 ![image](https://github.com/user-attachments/assets/8497d8c0-85ed-4751-a747-1d3f398672be)
 ![image](https://github.com/user-attachments/assets/0f1d3ffb-6880-4a47-9010-8d9ffa30bf7a)
+
 One more item to be initialized is release function inside dev structure.
 ![image](https://github.com/user-attachments/assets/bf7a420d-46a6-441b-8023-106346ada543)
 ![image](https://github.com/user-attachments/assets/333309f9-864f-4317-a201-7beb817b9a7d)
+
 we are using more global data, just in case if it's dynamically allocated, we need a point when it can be freed at the point of unbinding/relase.
 ![image](https://github.com/user-attachments/assets/f46631dc-373b-4dd5-b93d-d3cd759a2d46)
 ![image](https://github.com/user-attachments/assets/b68a1b67-fc1e-4076-a455-b3afcbbeeaaf)
+
 Platformd devices are added and removed
 ![image](https://github.com/user-attachments/assets/f64d9977-e2e4-44ec-8120-fdadcafcfead)
 
