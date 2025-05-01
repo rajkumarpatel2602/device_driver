@@ -304,6 +304,34 @@ Which device info to be provided to linux kernel, so that it can do autoload of 
 How to register platform device?
 ![image](https://github.com/user-attachments/assets/5832e554-ad92-4592-a8a7-c55fae55b76c)
 
+3 paths
+![image](https://github.com/user-attachments/assets/4bd8b4d1-9671-48a6-9716-90fccd8fee59)
+
+Board file approach
+![image](https://github.com/user-attachments/assets/23231c42-8c0d-4c03-867f-80106e0b6823)
+Device tree
+![image](https://github.com/user-attachments/assets/86f5e5be-b287-4c21-b4da-8da84c282ee7)
+
+Where board files are placed?
+per device in arch folder all board files are preesnt. These are part of kernel source, which is a bad bad idea. supported before 3.6 kernel.
+![image](https://github.com/user-attachments/assets/55680091-2c4c-4aa1-972f-b1f4393cba67)
+![image](https://github.com/user-attachments/assets/ccce2299-b931-4502-b3bd-27692291c2e2)
+Whenever linux kernel detects a board, it jumps to devxxxx_init() function in its board file. It includes platform devices configurations, resources.
+![image](https://github.com/user-attachments/assets/84a6c7cc-e560-4ced-a6cb-ea9e58ae01f3)
+newer kernel has removed platform or board specific board files, rather it has just kept a generic board file.
+![image](https://github.com/user-attachments/assets/ebaea0b3-b093-45c5-af5c-34ed75a726c9)
+this includes generic info for various board, but exact board specific details are instantiated from device tree. you won't find no platform device structure.
+![image](https://github.com/user-attachments/assets/5521ae1b-6652-4914-ad6d-fb8e4a10bba1)
+
+Example platform driver
+![image](https://github.com/user-attachments/assets/e374aeca-994f-4825-a69b-39466e8f857a)
+![image](https://github.com/user-attachments/assets/93f03654-95e0-4de3-b823-e48a3595687e)
+TI gives drivers for platform devices/driver for peripherals.
+![image](https://github.com/user-attachments/assets/5f33e955-3a0e-4bf0-a579-d16cd724feb1)
+Red circle is i2c (peripheral) devices / i2c client devices. Yellow circle is i2c bus controller / i2c host controller / i2c cotroller.
+![image](https://github.com/user-attachments/assets/ccf6c80c-4080-4e37-b46e-3eb418ab8270)
+I am writting i2c device driver - writing driver for i2c device which is connected to i2c controller over i2c bus. i2c controller driver is most probably given by vendor itself. these are controller driver. so controller drivers are mostly available, but device drivers are to be written.
+![image](https://github.com/user-attachments/assets/fdbd2789-1420-4299-909a-36278115ead8)
 
 
 
