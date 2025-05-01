@@ -414,6 +414,18 @@ we are using more global data, just in case if it's dynamically allocated, we ne
 Platformd devices are added and removed
 ![image](https://github.com/user-attachments/assets/f64d9977-e2e4-44ec-8120-fdadcafcfead)
 
+Platform Driver code
+Same as pseudo char driver. with probe and remove method difference. moreover, platform driver registration has to happen.
+Also platform driver members are to be initialized. which are important??? check below.
+![image](https://github.com/user-attachments/assets/1e8476a1-742d-4542-b835-3795e7818d10)
+this name has to be same as suplied in platfrom device
+![image](https://github.com/user-attachments/assets/9b3833af-95cc-4ed7-8609-8e2b467948ec)
+![image](https://github.com/user-attachments/assets/3d198a66-6fe9-4ce4-b6ec-a32830b42ced)
+![image](https://github.com/user-attachments/assets/60e5815b-ff3d-4a36-9085-faf6f083f342)
+Number of times platform_device_register() gets called, that many time, probe has to be called.
+
+Driver unloading - Remove function is called first before cleanup, to give a chance to unbind any device before unloading driver.
+![image](https://github.com/user-attachments/assets/bdf66c81-9976-4c2e-a6c6-5c8ccaab9b2e)
 
 
 
