@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/43b861fc-cf9d-4d41-8435-11f34b30a5c4)![image](https://github.com/user-attachments/assets/0c3c1add-d47e-405c-8ad0-8ab495dd8385)
+![image](https://github.com/user-attachments/assets/8fde6e27-dc33-4e5b-ad97-d3eb2a355c34)![image](https://github.com/user-attachments/assets/43b861fc-cf9d-4d41-8435-11f34b30a5c4)![image](https://github.com/user-attachments/assets/0c3c1add-d47e-405c-8ad0-8ab495dd8385)
 
 Minor numbers help to differencitate between device file. By major, VFS choses device file, and with minor number, which instance or which device file is used by user, that's recognized by driver. So minor are used for driver to differentiate device instance requests, and major are used by vfs for systemcall or user call forwarding which are initiated by device file.
 
@@ -248,12 +248,62 @@ vfs doesn't supply inode to read and write method, so we can't get this info by 
 where to use?
 use in file object which vfs supplies to other method. there's a private_data field, which can be used.
 ![image](https://github.com/user-attachments/assets/860a58bb-0ec1-4b0b-9d8e-c40bb9898099)
+write method
+![image](https://github.com/user-attachments/assets/7e514559-f7b1-4711-907c-3b3b6e3ca4d7)
+
 
 Premission checking is also need to be implemented here in open()
-![image](https://github.com/user-attachments/assets/9985e6ae-06bf-4255-9776-f61991e62a6b)
-
-
 vfs calls driver's open method, with information of inode and file pointer.
+![image](https://github.com/user-attachments/assets/9985e6ae-06bf-4255-9776-f61991e62a6b)
+file kernel object structure has f_mode field, which catch user's intention for access while opening file.
+![image](https://github.com/user-attachments/assets/35d22b15-3bd3-44dd-a75a-2821cacb78c8)
+![image](https://github.com/user-attachments/assets/46f3093c-2e0e-4de8-b6cf-eaf915358b28)
+![image](https://github.com/user-attachments/assets/77bb72e2-f73c-47c7-9f1d-2a18821491f7)
+![image](https://github.com/user-attachments/assets/44a48ae0-b0e2-4903-9256-43d7968e810b)
+
+Writting on readonly file.
+![image](https://github.com/user-attachments/assets/5d7153dc-f1f9-4be8-9115-bc3196b24d70)
+
+Writting to readonly device file : strace comes in handy, as it shows all system call trace.
+Strace is used to debug user level application.
+![image](https://github.com/user-attachments/assets/7b4de7d5-0815-4a1f-a715-1837c03f9cc3)
+![image](https://github.com/user-attachments/assets/4c73a538-b744-4817-94fc-321180b118f2)
+
+successful write on device 2
+![image](https://github.com/user-attachments/assets/f1350973-21f1-4d0f-be80-b545eded1938)
+![image](https://github.com/user-attachments/assets/7541c18b-4369-4fe1-97c5-ef3517bafe27)
+
+file operation
+![image](https://github.com/user-attachments/assets/7e192e01-5c02-4df1-be95-b74c88076397)
+![image](https://github.com/user-attachments/assets/8ef44d9a-1a29-4528-8069-d86ffc6714e3)
+
+
+Platform drivers
+
+![image](https://github.com/user-attachments/assets/a72cadf9-b61b-47c2-a6a9-ecee3b9afc94)
+![image](https://github.com/user-attachments/assets/f0e6b53e-2848-4212-9e00-316d3610e76e)
+![image](https://github.com/user-attachments/assets/12bfcc1f-845b-4816-8297-b0512ebda66e)
+![image](https://github.com/user-attachments/assets/2544f59d-b606-48d4-abbe-d285e0317981)
+![image](https://github.com/user-attachments/assets/a5d2fc0b-3b85-428c-84f8-b9aeb6c1c6c9)
+![image](https://github.com/user-attachments/assets/4fa5e51b-3d62-42c0-b9de-fea113f82feb)
+![image](https://github.com/user-attachments/assets/bcc3b772-b9f6-48d7-9081-eb7e34a6df98)
+Linux gives unique name to these non-discoverable or hotpluggable buses, and that name is 'platform bus'
+![image](https://github.com/user-attachments/assets/4a90131a-37dd-4750-b1c5-4a217d319a4e)
+Linux doesn't distinguish buses as i2c, spi, or l3, l4 interconnect, APB or AHB, like that. it simply says, platform bus.
+from hardware perspective devices are may be connected on these different buses. but for linux it's all platfor bus. it's a pseudo bus.
+and devices connected on these buses are called platform devices.
+![image](https://github.com/user-attachments/assets/a0cc1bce-37e3-4740-b237-a79baa2e6c6f)
+There are on-chip peripherals and off-chip peripherals.
+Below devices are platform devices, because there are not auto-discoverable by their host bus interface.
+![image](https://github.com/user-attachments/assets/ee2ed53c-e4e7-4bea-9255-9fa3ca2d8856)
+Platform devices has to be part of "Linux Device Model", so that, "device information" about these devices can be fed to linux kernel at either boot or compile time.
+![image](https://github.com/user-attachments/assets/cf2eaec9-69ff-401b-86e4-132fcd26660f)
+Which device info to be provided to linux kernel, so that it can do autoload of appropriate driver and do configuration properly
+![image](https://github.com/user-attachments/assets/4cb46fa6-5e3a-4c95-83e9-ebeb23994000)
+
+How to register platform device?
+![image](https://github.com/user-attachments/assets/5832e554-ad92-4592-a8a7-c55fae55b76c)
+
 
 
 
