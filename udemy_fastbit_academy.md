@@ -181,3 +181,41 @@ only difference is return code. ENOMEM is used if count is adjusted to zero.
 
 lseek: meaning can be changed according to device and driver implementation.
 ![image](https://github.com/user-attachments/assets/c445ae16-b723-4275-9072-91a72603ae70)
+![image](https://github.com/user-attachments/assets/d1e3c2db-fc47-4110-83d9-72dc519c8365)
+
+Testing:
+![image](https://github.com/user-attachments/assets/50f17b7f-f64f-435c-b4cf-c0c167c2fe68)
+
+cat application retries
+![image](https://github.com/user-attachments/assets/8ec0fad8-1ca9-41e1-b55d-0fa81008395b)
+
+Error handling in kernel module init
+![image](https://github.com/user-attachments/assets/c6c46a6c-204b-438d-b0de-ecf46dd0b7b7)
+Goto is verymuch valid for kernel programming and specially for error handling.
+
+Handling error scenarios
+![image](https://github.com/user-attachments/assets/da6a852f-0a3f-4be4-823b-d265a19bc5ab)
+![image](https://github.com/user-attachments/assets/538595e0-5703-4871-9948-e64ffb6fbd0f)
+
+MULTIPLE DEVICES using ONE Pseudo Character Driver.
+![image](https://github.com/user-attachments/assets/83359706-122a-40c2-88c9-a5ce3df703f4)
+![image](https://github.com/user-attachments/assets/c3123fc0-e528-40b2-96d0-dfa6b938e211)
+
+device file names
+![image](https://github.com/user-attachments/assets/2cc0c847-cb26-40fa-b4d8-3489e04156c4)
+
+Device specific info
+![image](https://github.com/user-attachments/assets/8f775485-2bcd-4d2f-9e8e-4fe46d9bc4b0)
+![image](https://github.com/user-attachments/assets/ff51442b-b65a-4871-9c76-51638798c0eb)
+
+![image](https://github.com/user-attachments/assets/d3f8651b-c1ba-48c7-a5fb-b35f59ef2eb0)
+
+Device specific private data: cdev struct is device specific. every device has to get registered with vfs. 4 devices means, 4 cdev structure.
+![image](https://github.com/user-attachments/assets/f7954dd0-a6f3-4115-bfde-72f754672120)
+
+Driver specific private data:
+![image](https://github.com/user-attachments/assets/0a7349d6-6a49-4885-91f5-51717b6513cd)
+
+Makefile - just name change
+![image](https://github.com/user-attachments/assets/79e769e8-85f4-436d-9a2d-c7d3dca7ef1a)
+
