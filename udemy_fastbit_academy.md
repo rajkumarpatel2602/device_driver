@@ -143,3 +143,41 @@ Complete scenario
 	Lseek::
 prototypes
 Export major minor info to udevd by using kernel apis.
+
+Error number: errorno is set whenever driver method encounter an error. this can transcend from kernel to user space. ways to pass a message to user.
+![image](https://github.com/user-attachments/assets/c5ded905-d165-4a46-accd-e18bc3fce058)
+
+Copy to user:
+
+why to use? because we can't trust user calls. if these calls return non-zero then we need to worry.
+
+![image](https://github.com/user-attachments/assets/6954c340-f91d-42db-8062-4c33e58c942c)
+
+always first arg will be destination.
+![image](https://github.com/user-attachments/assets/e9167b50-dc0b-4002-9c46-c8514c3a5e0a)
+![image](https://github.com/user-attachments/assets/66754dcc-0390-4404-a72c-bc71bcf96428)
+
+Inode are unique to file. but FILE * struct is always created when fopen gets called.
+![image](https://github.com/user-attachments/assets/80cd2f95-dcab-4b46-b6f2-404753f29e3d)
+
+f_pos is kept track for each individual process because, whichever process will call fopen, it will see its unique f_pos.
+![image](https://github.com/user-attachments/assets/40da182c-b6ac-44e6-9a0a-6cdf3ca44c6a)
+
+Every read and write will take place from f_pos only.
+![image](https://github.com/user-attachments/assets/a1f43655-5c88-4c3b-a209-403ab1dfbd15)
+
+Read:
+![image](https://github.com/user-attachments/assets/c7f2018b-fe34-4bb8-ad53-60b34ac7ab5c)
+![image](https://github.com/user-attachments/assets/0573734c-fcb8-47c0-9b14-ff076466a18c)
+![image](https://github.com/user-attachments/assets/fe931941-0eab-4a14-b7fb-d2cb1d6e0ab1)
+![image](https://github.com/user-attachments/assets/5c330f9b-830b-4061-ba55-bf5c1e5b1b5e)
+![image](https://github.com/user-attachments/assets/f84f9f1c-9524-4033-87cd-2a68cad83c61)
+
+Write:
+only difference is return code. ENOMEM is used if count is adjusted to zero.
+![image](https://github.com/user-attachments/assets/013e33a3-ae92-48d4-be56-8d8059ddd95b)
+![image](https://github.com/user-attachments/assets/f2f1e495-fa49-4cf8-ad6f-e0e7be3c49fe)
+![image](https://github.com/user-attachments/assets/398059cf-fd1f-4934-87f7-759a737077c1)
+
+lseek: meaning can be changed according to device and driver implementation.
+![image](https://github.com/user-attachments/assets/c445ae16-b723-4275-9072-91a72603ae70)
