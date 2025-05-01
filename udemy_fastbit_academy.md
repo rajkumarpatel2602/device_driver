@@ -430,5 +430,9 @@ Number of times platform_device_register() gets called, that many time, probe ha
 Driver unloading - Remove function is called first before cleanup, to give a chance to unbind any device before unloading driver.
 ![image](https://github.com/user-attachments/assets/bdf66c81-9976-4c2e-a6c6-5c8ccaab9b2e)
 
+CLI
+![image](https://github.com/user-attachments/assets/72521404-779a-4e7f-a808-d9918bdab359)
+![image](https://github.com/user-attachments/assets/c43c3eaf-f5be-41da-a58f-8b2225a729b8)
+
 
 
