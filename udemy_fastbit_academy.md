@@ -366,4 +366,29 @@ Exercise: implement psuedo char driver as platform driver
 driver		![image](https://github.com/user-attachments/assets/439b809e-924f-4ffc-936a-5af4875d796b)
 device setup	![image](https://github.com/user-attachments/assets/1c234006-f9c7-4b3a-afdb-1056d3905820)
 
+Device setup module
+![image](https://github.com/user-attachments/assets/55374234-f342-4a3d-bd46-261128f1724e)
+Skeleton
+![image](https://github.com/user-attachments/assets/1988d607-a60d-4ec7-af80-cb8754d0fbab)
+![image](https://github.com/user-attachments/assets/27d8c3aa-5ce7-4ad6-a7ea-eb9d62c9f09b)
+Earlier we passed device private data as different structure. this will be now called as device platform data. during registration, we should register data as well.
+![image](https://github.com/user-attachments/assets/2f34459f-db66-4adb-b92a-dd0dbe995632)
+platform.h to contain platform data.
+![image](https://github.com/user-attachments/assets/ab8aa708-9f8a-4b7d-b779-8f5042db13d9)
+![image](https://github.com/user-attachments/assets/45e331db-9aa3-4784-a43c-289deb18f792)
+where to store? platform_device -> dev structure -> platform_data
+![image](https://github.com/user-attachments/assets/0297d9ea-afdb-4b7b-9c07-11d9bddd40cb)
+![image](https://github.com/user-attachments/assets/8497d8c0-85ed-4751-a747-1d3f398672be)
+![image](https://github.com/user-attachments/assets/0f1d3ffb-6880-4a47-9010-8d9ffa30bf7a)
+One more item to be initialized is release function inside dev structure.
+![image](https://github.com/user-attachments/assets/bf7a420d-46a6-441b-8023-106346ada543)
+![image](https://github.com/user-attachments/assets/333309f9-864f-4317-a201-7beb817b9a7d)
+we are using more global data, just in case if it's dynamically allocated, we need a point when it can be freed at the point of unbinding/relase.
+![image](https://github.com/user-attachments/assets/f46631dc-373b-4dd5-b93d-d3cd759a2d46)
+![image](https://github.com/user-attachments/assets/b68a1b67-fc1e-4076-a455-b3afcbbeeaaf)
+Platformd devices are added and removed
+![image](https://github.com/user-attachments/assets/f64d9977-e2e4-44ec-8120-fdadcafcfead)
+
+
+
 
