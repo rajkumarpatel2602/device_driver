@@ -333,5 +333,37 @@ Red circle is i2c (peripheral) devices / i2c client devices. Yellow circle is i2
 I am writting i2c device driver - writing driver for i2c device which is connected to i2c controller over i2c bus. i2c controller driver is most probably given by vendor itself. these are controller driver. so controller drivers are mostly available, but device drivers are to be written.
 ![image](https://github.com/user-attachments/assets/fdbd2789-1420-4299-909a-36278115ead8)
 
+Registering platform device and platform driver
+Platform driver
+![image](https://github.com/user-attachments/assets/38910ead-c350-4a55-a4f8-ba70f809b627)
+![image](https://github.com/user-attachments/assets/57ed26b3-c1cf-4d3a-8a98-a1d3cf012a5e)
+Platform device. call this function to register from board file or device setup file.
+![image](https://github.com/user-attachments/assets/ad28bbc8-25ab-4c04-a6a3-93c9762e5c03)
+![image](https://github.com/user-attachments/assets/48fc42c0-34fa-4ae6-b544-b108107d49e6)
+How correct driver is autoloaded whenever one add a new platform device? kernel use some matching here. we are just supposed to take care of registering right way.
+![image](https://github.com/user-attachments/assets/c97cd61b-6860-42a0-b361-93732b3cb88e)
+Matching mechanism. Every bus type has its match function.
+![image](https://github.com/user-attachments/assets/495587f6-5e90-4e38-9053-0f0dbea26c79)
+Name based matching mechanism
+![image](https://github.com/user-attachments/assets/1e5c2d94-431b-416b-a1ec-859d7a7819ce)
+when match detected, bus driver management code determines driver for newly added device, and that driver's probe function is called with this device as an arg.
+![image](https://github.com/user-attachments/assets/e0a37d23-e370-469d-a4c8-c007a60acbf3)
+![image](https://github.com/user-attachments/assets/6513e0f5-33eb-4e50-8f85-d1abc39e0433)
+![image](https://github.com/user-attachments/assets/2ef63e79-6afe-4917-93fe-2d532dd5aff0)
+Probe function is very important // binding of device to kernel framework
+![image](https://github.com/user-attachments/assets/b01895c8-d83b-4dfd-b026-fd28cfa9878d)
+Remove function // unbinding of device to kernel framework
+![image](https://github.com/user-attachments/assets/16631ee7-b976-438e-b71d-a65c05efcc05)
+Probe an Remove are mandatory, where as other can be implemented as per need.
+![image](https://github.com/user-attachments/assets/9ceaf742-eee4-4276-b8d0-74346b6897ba)
+![image](https://github.com/user-attachments/assets/82cb9628-ad6c-400b-a765-4b2b1bf0c611)
+
+Exercise: implement psuedo char driver as platform driver
+![image](https://github.com/user-attachments/assets/d39d0370-acd6-48cc-abad-c5c889c6613f)
+2 files. 1 module for platform driver, 2nd module file for platform device setup
+![image](https://github.com/user-attachments/assets/f35ac4d0-3c47-4fb7-a5b8-1f3947772f7b)
+2 more functions are required for platform driver
+driver		![image](https://github.com/user-attachments/assets/439b809e-924f-4ffc-936a-5af4875d796b)
+device setup	![image](https://github.com/user-attachments/assets/1c234006-f9c7-4b3a-afdb-1056d3905820)
 
 
