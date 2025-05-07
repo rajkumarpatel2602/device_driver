@@ -533,4 +533,44 @@ pcdev_platform_init() and pcdev_platform_exit() are required.
 These are calling register and unregister apis for platform device. platform device is given by platform_device structure. user defined, but some mandatory fields are there.
 ![image](https://github.com/user-attachments/assets/e095bf96-bf2f-4de9-ae1d-49e1014a31a0)
 
+Platform device and driver matching technique, using platform device ids
+![image](https://github.com/user-attachments/assets/6eb92f6a-9460-4665-ae99-bc72e3ee146a)
+- single driver store diff configs
+- it detects chip - verify device id - and load respective config params, and thus config device properly
+![image](https://github.com/user-attachments/assets/62fffb09-93a5-411a-83e5-85d6ef3438ff)
+Platform driver must support different device ids. when driver detect any id from supported range, it's a match, probe gets called, and device gets configured.
+![image](https://github.com/user-attachments/assets/699e12cb-dfaf-40dd-8da3-51bb35b44ce7)
+modify pcd platform drier, to support different version of pcdevs. pcdev-A1x, pcdev-B1x, pcdev-C1x
+
+Hookup device id table here
+![image](https://github.com/user-attachments/assets/6d7990c4-f2fa-4a7c-8080-ea3715ca0a7a)
+![image](https://github.com/user-attachments/assets/d3005d2b-e508-4edd-84ef-051945fddfe0)
+
+device setup has name change
+![image](https://github.com/user-attachments/assets/000025bf-8c10-4085-8d49-961afb4f5e7a)
+
+in driver code, we are eliminating name based matching, and now, going for id based matching.
+![image](https://github.com/user-attachments/assets/a4e08694-408b-4a41-9b07-e5efc29d17e9)
+![image](https://github.com/user-attachments/assets/0a06c6b6-f49c-46cc-b3df-2c7a559baf45)
+if id table based matching is selected then driver.name based matching won't be happening
+![image](https://github.com/user-attachments/assets/73f5f8f0-1bec-40bd-8543-9761ddc7c1ec)
+see here, last 2 options, 1st device tree based, then acpi based, then id based and then name based matching happeening. 
+![image](https://github.com/user-attachments/assets/e84128fe-3fa5-4e31-bf56-db6be13b092d)
+![image](https://github.com/user-attachments/assets/93dbe885-2a2a-4bb2-9919-2e254219cbf2)
+![image](https://github.com/user-attachments/assets/fa75dd7c-1ada-40ab-8d9f-9ca29aa617be)
+Header is mod_devicetable.h
+![image](https://github.com/user-attachments/assets/f57a4fa2-d542-40d9-90fd-d49256d346ec)
+
+dmsg -C // clear dmessage
+![image](https://github.com/user-attachments/assets/2b59351e-98de-4a10-89b9-48750633d3dc)
+
+3 types of device ids are provided so only 3 devices got loaded
+![image](https://github.com/user-attachments/assets/7313c7e0-f5f9-403a-ac94-cf9fb48e9025)
+4th one D1x is not supported by driver, so not loaded.
+Add to id table and rmmod pcd_platform_driver.ko, add
+![image](https://github.com/user-attachments/assets/53d0c731-cd16-41d3-b98b-72cb8b68caed)
+insmode pcd_platform_driver.ko
+![image](https://github.com/user-attachments/assets/62fe3ccb-451f-4b44-8a6a-a24e7322e057)
+
+
 
