@@ -476,6 +476,9 @@ inside probe
 ![image](https://github.com/user-attachments/assets/d0aa3eb3-9674-4324-95f5-8ef262afe478)
 ![image](https://github.com/user-attachments/assets/307e2edc-d6d3-4cbf-96ba-d7566924cca9)
 ![image](https://github.com/user-attachments/assets/e8323bc1-ddfe-4b7c-bf30-e3e4325a2c15)
+goto just gest removed as it's automatically freed.
+![image](https://github.com/user-attachments/assets/7fe289fe-a2ed-4608-94f7-ea6cb9cdff18)
+
 
 insmode pcd_device_setup.ko for device load
 insmode pcd_platform_driver.ko for driver load , probe gets called here, as match gets found.
