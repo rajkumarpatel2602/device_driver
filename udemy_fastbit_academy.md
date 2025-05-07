@@ -434,5 +434,103 @@ CLI
 ![image](https://github.com/user-attachments/assets/72521404-779a-4e7f-a808-d9918bdab359)
 ![image](https://github.com/user-attachments/assets/c43c3eaf-f5be-41da-a58f-8b2225a729b8)
 
+Probe function
+What it should do, when platform device match is found with our driver?
+![image](https://github.com/user-attachments/assets/f88e5d0a-ef2c-4b0c-9f1c-f8b160d32b4a)
+Get device platform data
+![image](https://github.com/user-attachments/assets/0817fd3e-8cdd-4e32-8f9c-0c6ede045bac)
+![image](https://github.com/user-attachments/assets/6d911799-f194-4b6b-b473-19995dc0d09d)
+
+Kmalloc/Kzalloc and Kfree
+![image](https://github.com/user-attachments/assets/325d9bd4-c58e-44e1-bcb3-10933bdfe595)
+![image](https://github.com/user-attachments/assets/7cfd965a-51d4-40d4-a7d3-3be603dd74ab)
+![image](https://github.com/user-attachments/assets/4b048953-f612-43e1-a19b-d6ca99756fde)
+![image](https://github.com/user-attachments/assets/58891cf0-1b5c-49b4-a76b-032d0443f797)
+GFP KERNEL(put caller to sleep if no memory available) and GFP ATOMIC(interrupt handler)
+![image](https://github.com/user-attachments/assets/fd05e7da-7a2a-48aa-be93-165ca0940314)
+![image](https://github.com/user-attachments/assets/b941fae3-7af3-4b01-95a1-25cf5f48a8ac)
+![image](https://github.com/user-attachments/assets/522d1455-f9cf-40cd-9c06-76f94e203900)
+![image](https://github.com/user-attachments/assets/8c65fd98-891b-4773-94e0-0ab43ac3e324)
+Kzalloc zeros all the allocation
+![image](https://github.com/user-attachments/assets/d9859871-3776-4c83-940c-1bc0c1e6abb4)
+Kzfree
+![image](https://github.com/user-attachments/assets/68956a32-ef8a-4990-9af1-cc9658485c8e)
+Krealloc
+![image](https://github.com/user-attachments/assets/2ff7d6da-04ac-4fe4-8683-8bd9cffd9682)
+
+![image](https://github.com/user-attachments/assets/166b3e6c-cbe3-42a5-a1be-e93fa7b29702)
+![image](https://github.com/user-attachments/assets/e586c743-ed1e-4488-be29-bb9735fd07a1)
+![image](https://github.com/user-attachments/assets/d20d46a6-b0f0-40d1-85db-1406efd8a8ee)
+![image](https://github.com/user-attachments/assets/f8f38eec-1aa7-4004-bee2-5f46593c844b)
+![image](https://github.com/user-attachments/assets/46bde85a-5a5d-4b67-ba49-94cf7b24b624)
+
+
+Remove function
+![image](https://github.com/user-attachments/assets/1761f93f-0809-461e-a596-58567974808c)
+![image](https://github.com/user-attachments/assets/73e4ee40-7d5d-4c70-8373-9c0f2d407b72)
+inside probe
+![image](https://github.com/user-attachments/assets/4c95fa4a-b1d5-461f-96ab-d3db355a8a54)
+![image](https://github.com/user-attachments/assets/bc2b5a20-3206-480e-9340-b231f39c3609)
+![image](https://github.com/user-attachments/assets/816e8d6f-c833-49d2-bdc0-7b44c8a30f19)
+![image](https://github.com/user-attachments/assets/5b25c3ec-446b-4dc8-9094-2aa24eee062c)
+![image](https://github.com/user-attachments/assets/d0aa3eb3-9674-4324-95f5-8ef262afe478)
+![image](https://github.com/user-attachments/assets/307e2edc-d6d3-4cbf-96ba-d7566924cca9)
+![image](https://github.com/user-attachments/assets/e8323bc1-ddfe-4b7c-bf30-e3e4325a2c15)
+
+insmode pcd_device_setup.ko for device load
+insmode pcd_platform_driver.ko for driver load , probe gets called here, as match gets found.
+![image](https://github.com/user-attachments/assets/018581fd-1a2d-4442-ae98-a298d04a41e7)
+![image](https://github.com/user-attachments/assets/76058309-7f56-446e-8773-bde576f0cb45)
+![image](https://github.com/user-attachments/assets/c60188f3-fa6d-4d84-b9a8-461caa221260)
+![image](https://github.com/user-attachments/assets/5969e5af-88e3-4348-8fc1-5b175afb9926)
+driver is still in use
+![image](https://github.com/user-attachments/assets/e4753c0b-6f7a-4753-8b86-7276c08614cc)
+![image](https://github.com/user-attachments/assets/a3b892c6-d660-43f2-a173-e727e2027b9f)
+if driver unloading is done first, then it will remove related devices as well.
+however, release function will get called on removing setup device module.
+![image](https://github.com/user-attachments/assets/1c93b2a2-deb9-4671-bb93-f5e16f18b834)
+
+
+Resource managed api
+![image](https://github.com/user-attachments/assets/9b174604-67b7-49a8-84c3-d35ee370d445)
+![image](https://github.com/user-attachments/assets/b5ea7bdc-b1ba-4c21-9d55-9e6abd716a92)
+![image](https://github.com/user-attachments/assets/62f43599-0e83-4a5a-9beb-694ef461332a)
+
+![image](https://github.com/user-attachments/assets/c674c357-f338-4053-8e01-1103cad0d7fb)
+list of resource managed apis in devres.h
+![image](https://github.com/user-attachments/assets/af6659cf-97b4-4e4b-a9ea-36a030910b38)
+
+How to get rid of gotos in driver writting , simplification of probe and remove. only use RMK api when we does on behalf of "struct device"
+![image](https://github.com/user-attachments/assets/c1cdf95a-1813-4a22-94bf-6a8185303f47)
+![image](https://github.com/user-attachments/assets/88aff16a-f6e8-40d4-b491-e52e00009794)
+
+Changing probe api
+![image](https://github.com/user-attachments/assets/71145944-7ec5-4990-a4f3-3564d9cee3ef)
+![image](https://github.com/user-attachments/assets/e89625dd-c7cc-4a1b-976d-0f9991ae2bd9)
+![image](https://github.com/user-attachments/assets/dc3eb3fa-64f6-4afe-84e3-4df21a0cb116)
+
+Adding some more platform devices
+![image](https://github.com/user-attachments/assets/18637531-99d7-4188-a62d-ae8064f2a71d)
+![image](https://github.com/user-attachments/assets/e8aa3bda-3b93-4fa9-81cb-a8795cbacac9)
+Add multiple devices in one go
+![image](https://github.com/user-attachments/assets/ccac9b0c-f7a8-4280-a184-417fefc12040)
+![image](https://github.com/user-attachments/assets/2d2dc2eb-0941-4246-9d45-c3dd83416f10)
+Kernel crash
+![image](https://github.com/user-attachments/assets/d902d2c0-4786-4de8-a6ea-b9278b8840e6)
+
+![image](https://github.com/user-attachments/assets/6f08e235-879a-4f86-a55a-94e01281ea9d)
+id1 used more
+![image](https://github.com/user-attachments/assets/0e1469fb-e253-4eb8-b760-c8ee625d2c96)
+Removing caused issue of crash
+![image](https://github.com/user-attachments/assets/f9490820-5de1-4e97-8e40-31ec450c446a)
+dmesg
+![image](https://github.com/user-attachments/assets/499bc601-b75e-48de-a874-569af771051e)
+![image](https://github.com/user-attachments/assets/c310fbdc-7fa4-4944-995a-064275c6a767)
+Reboot machine now
+
+for platform device setup module
+pcdev_platform_init() and pcdev_platform_exit() are required.
+These are calling register and unregister apis for platform device. platform device is given by platform_device structure. user defined, but some mandatory fields are there.
+![image](https://github.com/user-attachments/assets/e095bf96-bf2f-4de9-ae1d-49e1014a31a0)
 
 
