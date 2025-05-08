@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/8fde6e27-dc33-4e5b-ad97-d3eb2a355c34)![image](https://github.com/user-attachments/assets/43b861fc-cf9d-4d41-8435-11f34b30a5c4)![image](https://github.com/user-attachments/assets/0c3c1add-d47e-405c-8ad0-8ab495dd8385)
+![image](https://github.com/user-attachments/assets/366ded7c-637a-4028-9d34-a8d17f00af4d)![image](https://github.com/user-attachments/assets/8fde6e27-dc33-4e5b-ad97-d3eb2a355c34)![image](https://github.com/user-attachments/assets/43b861fc-cf9d-4d41-8435-11f34b30a5c4)![image](https://github.com/user-attachments/assets/0c3c1add-d47e-405c-8ad0-8ab495dd8385)
 
 Minor numbers help to differencitate between device file. By major, VFS choses device file, and with minor number, which instance or which device file is used by user, that's recognized by driver. So minor are used for driver to differentiate device instance requests, and major are used by vfs for systemcall or user call forwarding which are initiated by device file.
 
@@ -600,4 +600,209 @@ Here, we are not just doing register-unregister so we can't use. look below
 ![image](https://github.com/user-attachments/assets/8e89aac3-53ae-4251-b5d1-eada8547a1b0)
 
 
+## Device Trees
+![image](https://github.com/user-attachments/assets/cbc975d1-7349-4b35-9ae0-751b6a60e538)
+![image](https://github.com/user-attachments/assets/e9f08af3-8c4a-4674-857e-b5586fbaafa3)
+![image](https://github.com/user-attachments/assets/64bb6702-24c5-423a-98a9-990773a49aa8)
+![image](https://github.com/user-attachments/assets/1e9c09c0-5e03-4881-b143-48c87887570d)
 
+kernel creates kernel data structure with fed device tree - HW configurations,
+this details are pased to driver, using probe function.
+![image](https://github.com/user-attachments/assets/057712a9-ac30-44a7-b0a6-ef53b6c98519)
+![image](https://github.com/user-attachments/assets/c7b1ffbe-b090-4102-8854-4cb0c23d8454)
+![image](https://github.com/user-attachments/assets/6d177c30-c323-4659-8e33-05fce7acac62)
+
+Writting device tree
+![image](https://github.com/user-attachments/assets/ca52a6b6-7f94-4531-aaf0-f8d48efb591d)
+![image](https://github.com/user-attachments/assets/ba64729e-aca0-4050-abbc-641ba5d11c91)
+![image](https://github.com/user-attachments/assets/915097cd-e051-45b2-9cc5-8cfba51f2071)
+Hierrarchy
+![image](https://github.com/user-attachments/assets/03f8b016-455a-43f6-9302-e5912e52e5d1)
+![image](https://github.com/user-attachments/assets/3a232d8c-5434-49d1-a32a-8d8ccdd107b4)
+SOC specific dtsi (on-chip peripheral and processor description) is included to board specific dtsi(on-board peripheral)
+![image](https://github.com/user-attachments/assets/c10b4544-e082-43df-b34e-7ac617489725)
+dtsi, device tree source include files, which are menat to be included. and dts are actual device tree source file.
+![image](https://github.com/user-attachments/assets/815eb063-5e13-41aa-8935-da8445a8a02e)
+![image](https://github.com/user-attachments/assets/e2b10648-62bf-4c04-ae17-3e5e082aa363)
+device tree structure
+![image](https://github.com/user-attachments/assets/2e63c12f-40cf-43a5-819c-48e7af9034b8)
+device tree is collection of nodes(nodes are devices) which are related to each other with parent-child relationship
+root node is required, and it's a beginning/starting point of device tree. this is the reference node.
+![image](https://github.com/user-attachments/assets/2f5a551e-95aa-4c81-a23b-c83793ade92b)
+properties are used to descrive node/device.
+![image](https://github.com/user-attachments/assets/72bc90db-c8d2-4f39-9631-6a16618b8060)
+CPU and memory nodes are root level nodes
+parent-child relationship
+![image](https://github.com/user-attachments/assets/6c59aa2f-1f12-4699-bbd0-a8c2897371ce)
+i2c node explains controller of the hardware, and child nodes describes devices/user/clients connected to controller.
+![image](https://github.com/user-attachments/assets/a9a5db3c-e038-4c4c-a3c1-7ebaab2542f9)
+structural representation
+root level nodes are also called soc level nodes. There are set of properties, which we can set for a device
+![image](https://github.com/user-attachments/assets/bf034b1f-f459-45a3-9399-e5f1e03619f3)
+![image](https://github.com/user-attachments/assets/fba8a45d-15cf-4877-ba30-7832c1d64d42)
+![image](https://github.com/user-attachments/assets/c6234059-8cd3-4aaf-b948-38711ca5336f)
+in root node, cpu and memory node are present at root level. mandatory as a root level node.
+![image](https://github.com/user-attachments/assets/20e2def7-91fa-48a6-8cfd-81b1d5c802eb)
+
+How to write?
+![image](https://github.com/user-attachments/assets/9893f0fc-ff73-422f-aa10-8f97e8e2c02e)
+soc level DT is provided by vendors in the form of dtsi
+user mostly write device tree level over-lays or add-ons for board relate changes.
+![image](https://github.com/user-attachments/assets/d6d07800-c989-4011-a8c4-a114999a7d20)
+![image](https://github.com/user-attachments/assets/f70f97d0-ae58-43bd-a8cf-b18b5d4b48e1)
+properties of root node
+![image](https://github.com/user-attachments/assets/a8ea8604-9aaf-49a2-8e34-a5b7eee6f124)
+Every dtree has one root node. Top level device tree file give root node, 
+in board specific dts dummy root nodes are used for some overwritting of top level dtree root node.
+
+dtsi
+![image](https://github.com/user-attachments/assets/dec66fda-36d8-4e88-b4ae-6f94a23a59ce)
+dts
+![image](https://github.com/user-attachments/assets/e5d382ce-b3d5-4e34-8454-78314d127471)
+property added
+![image](https://github.com/user-attachments/assets/254b286a-4621-4a4d-920b-36e6f57dbc3b)
+
+over writting top level device tree inclusion/dtsi in device speicfic or board specific dts file
+![image](https://github.com/user-attachments/assets/52116a5a-65e9-4ccc-a243-21acc8398b75)
+![image](https://github.com/user-attachments/assets/9838b6f5-fb4c-4773-a468-e7d4b101ff22)
+
+DT writting syntax
+![image](https://github.com/user-attachments/assets/81e2b311-e503-4ee7-9a90-7a0051bc846f)
+![image](https://github.com/user-attachments/assets/760fecfb-2d88-4dee-8eeb-798640d261af)
+![image](https://github.com/user-attachments/assets/d24cb22d-7344-4c86-9d46-f3f4db40a77e)
+![image](https://github.com/user-attachments/assets/38819748-2972-44be-98be-f4edd4da5b5c)
+![image](https://github.com/user-attachments/assets/147abd4d-8f48-4621-b68d-74b38c0c9c45)
+![image](https://github.com/user-attachments/assets/75bdcb53-3188-4e85-b2ab-5ed5c1932ef5)
+unit-name is address of bus where device sits, or base address (register content) of the device, if device is memory mapped.
+![image](https://github.com/user-attachments/assets/179060dd-0ef9-4516-bfa0-1b6430dd7c5e)
+![image](https://github.com/user-attachments/assets/3b668dcf-bd8d-4a58-b2ca-454255d72dcb)
+![image](https://github.com/user-attachments/assets/eb9baea8-3044-4a4b-9130-06c64d0f5ec6)
+![image](https://github.com/user-attachments/assets/c8ae5f31-f984-44e8-8975-f353816aef81)
+
+this board device tree explains, i2c0 and i2c1 controller
+![image](https://github.com/user-attachments/assets/00cd225b-5196-47dc-a882-f9cf5606c987)
+
+node name is i2c@ADDRESS. as addresses of i2c controllers are different, it's node name will be unique as well.
+![image](https://github.com/user-attachments/assets/f9af80f0-25d2-40e1-8b9e-102cbf0975d5)
+
+for this controller, 1st register in memory map is start at this reg property specified address.
+base, size of memory map are given as below.
+![image](https://github.com/user-attachments/assets/075919db-8a16-40cb-9156-cd4216f18279)
+Check TRM(Technical reference manual of soc) to check base memory mapped address start/base for this controller.
+![image](https://github.com/user-attachments/assets/510591cd-ab3c-4d49-8f56-60876696eb5a)
+![image](https://github.com/user-attachments/assets/abd761fe-d2b5-457d-b2cc-0995658afb0c)
+![image](https://github.com/user-attachments/assets/4361574d-7e81-4eb8-b13b-a606d0968836)
+so reg property should be used for creating node-name by using as unit-address.
+for ease, simply use alias/lable
+![image](https://github.com/user-attachments/assets/28e97b35-e99b-4d73-8555-2d753692e6d9)
+![image](https://github.com/user-attachments/assets/4577c9b6-f6c4-44a1-9c64-68ce3c0fe8d0)
+![image](https://github.com/user-attachments/assets/1878fbd1-f2bc-4393-8e5c-2c95bad27aca)
+remember reg property will only comes into picture when device has memory mapping or device addressing.
+in case of absence of reg property, omit unit address.
+
+Parent Child relationship
+![image](https://github.com/user-attachments/assets/14baf700-aaf4-4462-8538-97fc979ca559)
+![image](https://github.com/user-attachments/assets/b78f5192-9179-49cc-939e-9cdf1a37c601)
+check BB black common dtsi, where amending of status ('disabled' to 'okay') and adding of children is done.
+![image](https://github.com/user-attachments/assets/8ddb712c-3c36-47b6-be53-e3c2f820fc80)
+
+2 child nodes. i2c is referenced and changes are amended.
+![image](https://github.com/user-attachments/assets/3a65b0cf-7e6b-4dba-a88c-71980de060a6)
+reg property explains i2c address, as it is not on-chip device and not memory mapped, but an external hardware on BB Black HW.
+communicates with soc over i2c, and hence it has separate address.
+![image](https://github.com/user-attachments/assets/35973cd7-8be0-48ca-8da3-83a771042113)
+![image](https://github.com/user-attachments/assets/05780edb-20c3-471e-8af5-15f6f21faa70)
+One more childnode of eeprom to explain memory section. this is optional one.
+![image](https://github.com/user-attachments/assets/e9d878b8-1f5b-40d5-9620-869f8761e952)
+
+
+Standard property (device-driver binding doc or by speicifications) vs non-standard/custom properties(non-specific or vendor/org specific properties).
+![image](https://github.com/user-attachments/assets/8c17ceb1-1b1f-45e3-ab08-e52d6b7f25b5)
+![image](https://github.com/user-attachments/assets/ff97c90f-0861-4a68-b0e5-1096b5ae6794)
+![image](https://github.com/user-attachments/assets/4905a0af-d790-4965-a0d9-4e05516d8cee)
+Non-standard property name convention. it's prepended by some org specific ticker followed by coma and then property name.
+![image](https://github.com/user-attachments/assets/b345612b-30fc-4519-aebc-3331a632a0c4)
+![image](https://github.com/user-attachments/assets/68b99ba8-d3d4-4d38-825c-c02e57067577)
+
+## Properties
+'compatible'
+![image](https://github.com/user-attachments/assets/9f9958dc-eb92-4d99-8ead-6d678b1c0743)
+property values
+![image](https://github.com/user-attachments/assets/1bbd56cb-17e8-4cb8-b264-c105f974ec9c)
+![image](https://github.com/user-attachments/assets/809ce4e4-fba8-42a2-89eb-847969337235)
+client program -- here linux, uses this to define driver.
+![image](https://github.com/user-attachments/assets/fd27cc07-bf1e-4276-9e39-25875fbcf381)
+This is like, these set of or family of devices are compatible to specific driver. just like, we had device family details in platform pcd device-driver emample, and kernel used name of this to see compatibility with respective driver.
+
+When kernel sees this compatible string, it will try to find the driver supporting the exact string.(more specific compatible driver), kernel load driver, and probe is called. if not located this, then go to next string match.
+![image](https://github.com/user-attachments/assets/0775a851-9193-41cc-a008-282e59a0577f)
+
+
+We are going to change our PCD driver implementation by using device tree method, and pass device private data as properties to the driver.
+![image](https://github.com/user-attachments/assets/41e5b34b-5656-478e-aba4-5371392a1d62)
+
+exmaple
+![image](https://github.com/user-attachments/assets/b4bcb4d2-c17a-4038-aecc-a934328c86b2)
+![image](https://github.com/user-attachments/assets/45673627-bc4e-434c-a003-bbfc0ba0da3f)
+Checking goes, most specific to more general
+![image](https://github.com/user-attachments/assets/9944fbe0-e337-416b-9400-a7f2896924ca)
+if not matching found, then use machine identification fails
+![image](https://github.com/user-attachments/assets/6bc81ec8-57cf-4de0-8f07-4cec0ed6d563)
+
+Usecase of 'compatible' property
+![image](https://github.com/user-attachments/assets/39701e4a-744e-45bf-b8db-43e18e81815b)
+
+How to track supported list of SoCs?
+suppose we have dtsi
+![image](https://github.com/user-attachments/assets/91446594-bfbb-4aaa-8a38-ce428b6cdc90)
+check compatible field. we get driver details. goto/drivers/i2c/ and find i2c driver of soc family omap.
+![image](https://github.com/user-attachments/assets/cfe6041c-400e-4c8e-b9c3-e2f5bd389ab3)
+![image](https://github.com/user-attachments/assets/1c9c1bf0-fcdf-4aee-a6a3-a3e439a108b3)
+go at the end, and check which platform driver is getting registered.
+![image](https://github.com/user-attachments/assets/bbd594f5-5dbe-49bf-858b-03eb4b3cd7e8)
+goto that driver structure
+![image](https://github.com/user-attachments/assets/765fd208-fed1-434c-8447-d3c22f98e0c5)
+goto, open firmware match table
+![image](https://github.com/user-attachments/assets/4f1c5d09-55be-41a0-ac1e-90acd5a4565a)
+so this driver supports i2c controller/peripheral for all these SoCs.
+so, the compatible name which we have kept in our i2c dts, is matching with one of the entry of this driver supporeted soc in driver structure's of_match_table. if status is "okay" in dtsi, then that driver's probe function is getting called.
+
+observe, there's no driver for this tsp device, because, there's no compatible property mention, so no driver to load
+![image](https://github.com/user-attachments/assets/3e569987-bcdb-40f6-9edc-6d4c1b68bd4d)
+
+for second device, as it has compatible property, that driver will get loaded for this device node.
+![image](https://github.com/user-attachments/assets/9e867cc3-6022-434a-a8c1-3f49b5e4bd0c)
+![image](https://github.com/user-attachments/assets/8a30cafd-6e9e-46d3-a87d-a02c1463d11c)
+
+
+But How does one know, which properties to mention, and from where to refer?
+![image](https://github.com/user-attachments/assets/66f91b4f-2597-4b74-a538-cc2c83054c6a)
+![image](https://github.com/user-attachments/assets/e3b94703-fd2b-4bb9-8aa7-8025a1fdf702)
+device driver writter is responsible to provide this details. e.g. device tree binding document
+![image](https://github.com/user-attachments/assets/922146c6-adce-4de2-ae2b-739869d714b2)
+device binding properties are in devicetree bindings document
+![image](https://github.com/user-attachments/assets/3e987823-8bb6-44d3-8ace-c454f1de000c)
+![image](https://github.com/user-attachments/assets/39fff948-5ad6-4a91-b246-0a617648bcd0)
+required, recommended and optional, these are types of properties.
+![image](https://github.com/user-attachments/assets/6494080f-7297-4dc5-98d6-61a69d55e6f0)
+
+How it comes to kernel
+![image](https://github.com/user-attachments/assets/17901864-c8b4-47dc-85cb-94a54589c76a)
+Client programs like OS and drivers defines compatible strings and properties and add in binding document, and then shared with DT writer to refer from  
+![image](https://github.com/user-attachments/assets/c337d2e2-59e4-4b3b-8d4c-8718758052d4)
+
+Cases when driver is part of kernel, and not part of kernel
+![image](https://github.com/user-attachments/assets/dc00b866-a3c6-4832-be8f-3852a2030aab)
+binding document for lm75
+![image](https://github.com/user-attachments/assets/6d3fbc5c-5b55-4c33-9d40-5e6b20f1f0e6)
+driver for lm75
+![image](https://github.com/user-attachments/assets/e0d1de3a-d20e-4d12-992c-9b29677bf22f)
+
+for mpu6050
+![image](https://github.com/user-attachments/assets/99475133-cc69-4583-9c11-f80b6f191b12)
+
+refer here:
+![image](https://github.com/user-attachments/assets/729ddc10-ef13-4319-9c7c-411773372d6d)
+
+Device tree writting style
+![image](https://github.com/user-attachments/assets/8ac3587c-568e-4840-8f5a-8b3bb805a83b)
