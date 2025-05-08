@@ -806,3 +806,31 @@ refer here:
 
 Device tree writting style
 ![image](https://github.com/user-attachments/assets/8ac3587c-568e-4840-8f5a-8b3bb805a83b)
+
+## Rewritting pcd driver, and instantiating devices from the dts.
+![image](https://github.com/user-attachments/assets/8a2aec0a-8851-4672-a727-1a93e8366ac9)
+
+## steps to compile kernel
+![image](https://github.com/user-attachments/assets/f84ee0fe-3607-4bbe-ad8b-ba7ca6d766e4)
+1. defconfig
+2. kernel compilation
+3. module compilaiton
+4. module install
+
+## upading BB black board
+- plug SD card.
+- copy uImage from /arm/arch/boot
+- ![image](https://github.com/user-attachments/assets/922020c2-f52e-4dba-8023-e5966cccf85c)
+- cd dts/
+- ![image](https://github.com/user-attachments/assets/3002a73e-8d6f-41ec-a49b-2aa33d3c34bc)
+- if module install is already done, then
+- ![image](https://github.com/user-attachments/assets/65e76a29-5eaf-4669-928e-1ef42a772ea4)
+- connect SD card to HW BB. and power on.
+- booting
+- ![image](https://github.com/user-attachments/assets/f7672bd2-48f2-4a31-9299-7a3815f8fbe7)
+- uname -r
+- ifconfig, now look for usb interfaces as those should be there, if not then reobot
+- ![image](https://github.com/user-attachments/assets/d039b148-374c-44ce-a17c-2a84b91a61a9)
+- required for ssh connection
+- ![image](https://github.com/user-attachments/assets/1fd02b73-0ac6-4303-baf6-e89e378980a5)
+
