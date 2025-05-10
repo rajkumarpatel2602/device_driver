@@ -899,3 +899,46 @@ Device tree writting style
 - required for ssh connection
 - ![image](https://github.com/user-attachments/assets/1fd02b73-0ac6-4303-baf6-e89e378980a5)
 
+
+## DTB creation, compilation, sending
+![image](https://github.com/user-attachments/assets/42a44b59-6e2a-40fd-9d4d-bf34e27caf51)
+send to board, add command to makefile
+![image](https://github.com/user-attachments/assets/701a8a98-7912-4cc6-a524-db3bd85fbc99)
+![image](https://github.com/user-attachments/assets/6c2e5d3e-62da-4828-928f-5604779c1af5)
+transfer driver
+![image](https://github.com/user-attachments/assets/b1274c9c-5db7-4eab-8bdf-823d9d1c51d3)
+![image](https://github.com/user-attachments/assets/e1d0af32-7065-4bb0-8a5c-94904908197f)
+
+login to termianl of bbb
+minicom command
+![image](https://github.com/user-attachments/assets/3f1f883c-8c66-40eb-879b-b8389bf651f2)
+![image](https://github.com/user-attachments/assets/05b8c7f7-00c6-470e-b5df-f3886b9029bd)
+
+Send dtb to boot partition
+![image](https://github.com/user-attachments/assets/d7cce441-5d81-46ff-90c4-18fac3ddd5c3)
+![image](https://github.com/user-attachments/assets/9ae1719b-c150-419c-8dd9-fd51eef1aca3)
+remove old dtb as its 4.14
+![image](https://github.com/user-attachments/assets/130f3343-ded9-4e29-8d26-9f36fe64e2e1)
+![image](https://github.com/user-attachments/assets/5b185d40-1bbb-46db-958c-5249caa259e4)
+![image](https://github.com/user-attachments/assets/ace621ff-586f-417f-b0f0-5e594e4d754a)
+Now reboot, so this uboot supply new dtb to kernel
+![image](https://github.com/user-attachments/assets/227e3701-a59e-4bb9-8a5e-d8e6bd102b9d)
+![image](https://github.com/user-attachments/assets/0634b545-1b4c-43a4-a47e-7c915f455148)
+
+Check added devices
+![image](https://github.com/user-attachments/assets/1c16154c-461d-4a51-8395-3398cc1e9ff2)
+![image](https://github.com/user-attachments/assets/5f074d73-3d57-4171-a109-908f10e7230a)
+of_node shows dt property
+
+Load driver
+![image](https://github.com/user-attachments/assets/17766784-cd5c-4622-8f2b-1011202588e1)
+![image](https://github.com/user-attachments/assets/1cd0dfe7-01dc-4cbe-b839-3f7d89428bb3)
+See, probe executed.
+removing driver
+![image](https://github.com/user-attachments/assets/7a54ca4b-ed02-4ff6-89b7-79c1cb6164ec)
+and hence matching finishes device node and driver matching done.
+
+2 kind of methods we have seen to call probe.
+1. manual way of registering device and probe gets called using device setup method
+2. device tree method, where without any device registration, probe gets called.
+
