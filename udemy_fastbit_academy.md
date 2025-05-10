@@ -1,3 +1,68 @@
+## building first kerne module
+
+## makefile for module building
+
+command
+![image](https://github.com/user-attachments/assets/5a638971-67af-4d52-ba45-f9a213f378ec)
+
+build for target arch
+![image](https://github.com/user-attachments/assets/2f025ef5-4936-4019-bf53-1bfb1852e3f1)
+This way built modules can be inserted on target machine
+![image](https://github.com/user-attachments/assets/a798acf9-cff2-4877-9996-af681d83a77a)
+
+build for host, or against pre-compiled kernel
+![image](https://github.com/user-attachments/assets/1b2f5b8f-948c-4d6f-a8ce-b4bf603348ad)
+These way built modules can be inserted in host machine
+![image](https://github.com/user-attachments/assets/153aa8c1-888b-4e37-ba63-5f4cd667e0a2)
+
+## Adding in-tree module
+![image](https://github.com/user-attachments/assets/d56ec967-bc22-4179-a738-3f1370d083b6)
+![image](https://github.com/user-attachments/assets/49e00827-cc8f-48b6-962b-a92b78e8c748)
+
+Steps:
+create a folder inside driver/char/. e.g. driver/char/my_c_dev
+Add kconfig, describe your kernel module. tristate is config description string. CUSTOM_MOD_NAME is option appear is linux .config.
+and name of module is shown as menuconfig option.
+![image](https://github.com/user-attachments/assets/36e55324-2dbb-467f-bad2-8c9338d208f7)
+
+Add kconfig to upper level kconfig.
+![image](https://github.com/user-attachments/assets/23a27b33-2e95-4ecb-81ea-1663eb19b7b5)
+
+Add Makefile, use "$(CONFIG_CUSTOM_MOD_NAME)" // check config preprended.
+![image](https://github.com/user-attachments/assets/7ec45c0c-bd6a-424c-a993-30d22243ea3f)
+
+Add makefile to uper makefile. Linkage of path happens here.
+![image](https://github.com/user-attachments/assets/9b6a90ef-3256-46e7-86e2-8aceb71300ac)
+kernel build system will come to driver/char, and will read this makefile, and it will go inside given obj-y path and usae that Makefile
+
+comeback to linux top level directory
+![image](https://github.com/user-attachments/assets/99107d5e-dd10-4324-beee-a6f0132bfffb)
+![image](https://github.com/user-attachments/assets/bc312495-3ba6-4237-8029-fd95e194a7d4)
+![image](https://github.com/user-attachments/assets/bf62453c-24e1-4679-82e7-8f6f2346d6cb)
+![image](https://github.com/user-attachments/assets/bee8e9b7-d06d-4c95-86c0-4807a0d89dbc)
+main menu is fastbit custom entry, and inside that, list of modules
+![image](https://github.com/user-attachments/assets/40bee106-bb12-4481-a427-a50329b41e90)
+![image](https://github.com/user-attachments/assets/ba9a7627-00dc-41cb-a0c7-91fdda1de4a3)
+use M for dynamically loading the module, and * for static linking of module
+![image](https://github.com/user-attachments/assets/56268145-648d-4ca7-9db8-d82428f9b2c4)
+This selection changes the .config file on saving and exit
+![image](https://github.com/user-attachments/assets/7bdd7813-69c7-4033-b97c-3b7f9a1dc7d2)
+![image](https://github.com/user-attachments/assets/f3f42955-febd-4ea3-a887-5f2838792766)
+
+To build module, this kconfig will be used
+![image](https://github.com/user-attachments/assets/3f3b6de1-9bbb-4dd9-89db-6e39aa816a77)
+![image](https://github.com/user-attachments/assets/9f0ad4df-314f-4058-89fd-b0c39e6c9d2d)
+command to build loadable modules
+![image](https://github.com/user-attachments/assets/a517dd00-fed1-4504-b8a7-51d1d21d93cc)
+
+
+goto directory and check file main.ko
+![image](https://github.com/user-attachments/assets/4905ea4c-df8d-4caf-85eb-e0b2ad074fd7)
+
+see, it's an intree module now.
+Very important session:
+https://www.udemy.com/course/linux-device-driver-programming-using-beaglebone-black/learn/lecture/21622444?start=45#overview
+
 ![image](https://github.com/user-attachments/assets/366ded7c-637a-4028-9d34-a8d17f00af4d)![image](https://github.com/user-attachments/assets/8fde6e27-dc33-4e5b-ad97-d3eb2a355c34)![image](https://github.com/user-attachments/assets/43b861fc-cf9d-4d41-8435-11f34b30a5c4)![image](https://github.com/user-attachments/assets/0c3c1add-d47e-405c-8ad0-8ab495dd8385)
 
 Minor numbers help to differencitate between device file. By major, VFS choses device file, and with minor number, which instance or which device file is used by user, that's recognized by driver. So minor are used for driver to differentiate device instance requests, and major are used by vfs for systemcall or user call forwarding which are initiated by device file.
