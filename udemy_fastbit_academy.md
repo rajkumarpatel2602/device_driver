@@ -942,3 +942,12 @@ and hence matching finishes device node and driver matching done.
 1. manual way of registering device and probe gets called using device setup method
 2. device tree method, where without any device registration, probe gets called.
 
+In probe, one need to decide if probe instantiated from device setup code or due to device tree node.
+and based on that, of.h helper apis can be used.
+
+![image](https://github.com/user-attachments/assets/5b7ae143-8a0e-4186-874a-b9764c028c5b)
+![image](https://github.com/user-attachments/assets/d84be416-519e-4c23-970f-b13e202afdac)
+
+if pdata is null, then check if setupcode called this probe. and if that also fails, then message, no platform data available.
+![image](https://github.com/user-attachments/assets/b17bf0dc-6e9b-485a-91ab-842f3c08c6c1)
+
