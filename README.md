@@ -1,4 +1,4 @@
-raj// LF331 Module notes should be here. Chapterwise
+rajkumar// LF331 Module notes should be here. Chapterwise
 
 `AUM TAT SAT`
 
