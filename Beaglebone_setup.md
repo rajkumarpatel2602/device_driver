@@ -143,3 +143,23 @@ usb1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX packets 1789  bytes 312292 (304.9 KiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
+
+
+## Enabling vscode server on debian
+
+https://forum.beagleboard.org/t/replacing-cloud9-ide-with-vs-code-server-bb-code-server/32061
+```
+sudo apt update
+sudo apt upgrade
+
+sudo apt install bb-code-server
+sudo reboot
+
+Start VS Code Server on http://192.168.7.2:3000
+
+sudo systemctl enable bb-code-server
+sudo systemctl start bb-code-server
+
+autostart
+sudo systemctl add-wants multi-user.target bb-code-server
+```
