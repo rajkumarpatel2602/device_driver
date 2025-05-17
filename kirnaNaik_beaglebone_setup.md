@@ -1,3 +1,6 @@
+## check existing debian
+- lsb_release -da
+
 ## Booting with sdcard (Steps on my Mac)
 - Insert sd card
 - Install unarchiver with brew install urar.
@@ -13,4 +16,11 @@
 - Flashing starts here, do nothing.
 - Board goes power down and then power on with reset, and voila.
 
-##
+## Enabling internet
+On BBB
+- cat /etc/resolve.conf
+- Add - nameserver 8.8.8.8 and nameserver 8.8.4.4, save and exit
+- add interface for gateway #sudo route add default gw 192.168.6.1 usb1
+On Host pc
+- enable ip forwarding #sysctl -w net.inet.ip.forwarding=1
+- 
