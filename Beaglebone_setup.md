@@ -30,7 +30,7 @@ I will assume that you have successfully installed the necessary drivers and the
 
 Once that is done, verify that you can connect to the beaglebone:
 ```
-* mac$ ssh root@192.168.7.2 // for mac 192.168.6.2
+* mac$ ssh root@192.168.6.2 // for mac
 Debian GNU/Linux 7
 
 BeagleBoard.org Debian Image 2015-11-12
@@ -97,8 +97,8 @@ Naturally, you need to substitute en9 for the interface name you found in the pr
 
 Lastly, we need to set up the default gateway:
 ```
-* mac$ ssh root@192.168.7.1 // for mac 192.168.6.2
-* beaglebone# route add default gw 192.168.7.1 usb0 // based on what's there on ifconfig. i assume it is 6.2 and usb1.
+* mac$ ssh root@192.168.6.2
+* beaglebone# route add default gw 192.168.6.1 usb0 // use ip which you get on host machine
 beaglebone# ping 8.8.8.8
 PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 64 bytes from 8.8.8.8: icmp_req=1 ttl=54 time=16.6 ms
