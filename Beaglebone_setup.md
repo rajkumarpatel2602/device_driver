@@ -172,10 +172,12 @@ arm cross compiler toolchain (https://developer.arm.com/downloads/-/arm-gnu-tool
 wget https://developer.arm.com/-/media/Files/downloads/gnu/14.2.rel1/binrel/arm-gnu-toolchain-14.2.rel1-aarch64-arm-none-linux-gnueabihf.tar.xz
 
 busybox -- swiss knife made of tools and commands to use before init process start
+<img width="720" alt="image" src="https://github.com/user-attachments/assets/92365d60-bede-4d52-a20c-100aa2d75bb1" />
 wget https://busybox.net/downloads/busybox-1.37.0.tar.bz2
 
 kernel image
 https://www.kernel.org/
+<img width="1035" alt="image" src="https://github.com/user-attachments/assets/ba21b2cc-7a90-44b7-9145-e0a4099dcb2e" />
 
 build command
 make ARCH=arm CROSS_COMPILE=/path/to/arm/toolchain/bin/arm-none-linux-aebsomething- defconfig // defconfig building
