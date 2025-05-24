@@ -168,7 +168,7 @@ sudo systemctl add-wants multi-user.target bb-code-server
 https://www.youtube.com/watch?v=LyWlpuntdU4&list=PLCGpd0Do5-I0yRJDNcT5eKZVvgCdr2NLh&index=1
 sudo apt-get install make build-essential libncurses-dev bison flex libssl-dev libelf-dev
 
-arm cross compiler toolchain
+arm cross compiler toolchain (https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
 wget https://developer.arm.com/-/media/Files/downloads/gnu/14.2.rel1/binrel/arm-gnu-toolchain-14.2.rel1-aarch64-arm-none-linux-gnueabihf.tar.xz
 
 busybox -- swiss knife made of tools and commands to use before init process start
