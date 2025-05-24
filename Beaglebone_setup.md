@@ -163,3 +163,19 @@ sudo systemctl start bb-code-server
 autostart
 sudo systemctl add-wants multi-user.target bb-code-server
 ```
+
+# QEMU or cross compilation for kerel
+sudo apt-get install make build-essential libncurses-dev bison flex libssl-dev libelf-dev
+
+arm cross compiler toolchain
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.2.rel1/binrel/arm-gnu-toolchain-14.2.rel1-aarch64-arm-none-linux-gnueabihf.tar.xz
+
+busybox -- swiss knife made of tools and commands to use before init process start
+wget https://busybox.net/downloads/busybox-1.37.0.tar.bz2
+
+kernel image
+https://www.kernel.org/
+
+build command
+make ARCH=arm CROSS_COMPILE=/path/to/arm/toolchain/bin/arm-none-linux-aebsomething- defconfig // defconfig building
+make ARCH=arm CROSS_COMPILE=/path/to/arm/toolchain/bin/arm-none-linux-aebsomething- -j8 // building
