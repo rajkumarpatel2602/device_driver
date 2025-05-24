@@ -182,3 +182,9 @@ make ARCH=arm CROSS_COMPILE=/path/to/arm/toolchain/bin/arm-none-linux-aebsomethi
 make ARCH=arm CROSS_COMPILE=/path/to/arm/toolchain/bin/arm-none-linux-aebsomething- -j8 // building
 
 <img width="1512" alt="image" src="https://github.com/user-attachments/assets/a268c5b9-0278-498a-9f01-888e8a75eaf8" />
+
+// I had to download everything on mac system first, and then did ssh to utm
+steps are as below
+<img width="621" alt="image" src="https://github.com/user-attachments/assets/f75bf27d-e8ea-4715-913e-9fa3e1e2589d" />
+<img width="1495" alt="image" src="https://github.com/user-attachments/assets/73c518c1-ab2d-41b5-9e6f-e67660e92011" />
+<img width="1428" alt="image" src="https://github.com/user-attachments/assets/f61b96b8-e734-46b7-8aaf-4082ed59562e" />
