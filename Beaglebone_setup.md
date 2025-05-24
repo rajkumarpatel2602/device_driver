@@ -165,6 +165,7 @@ sudo systemctl add-wants multi-user.target bb-code-server
 ```
 
 # QEMU or cross compilation for kerel
+https://www.youtube.com/watch?v=LyWlpuntdU4&list=PLCGpd0Do5-I0yRJDNcT5eKZVvgCdr2NLh&index=1
 sudo apt-get install make build-essential libncurses-dev bison flex libssl-dev libelf-dev
 
 arm cross compiler toolchain
@@ -179,3 +180,5 @@ https://www.kernel.org/
 build command
 make ARCH=arm CROSS_COMPILE=/path/to/arm/toolchain/bin/arm-none-linux-aebsomething- defconfig // defconfig building
 make ARCH=arm CROSS_COMPILE=/path/to/arm/toolchain/bin/arm-none-linux-aebsomething- -j8 // building
+
+<img width="1512" alt="image" src="https://github.com/user-attachments/assets/a268c5b9-0278-498a-9f01-888e8a75eaf8" />
