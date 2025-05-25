@@ -36,6 +36,47 @@ Now install loadable modules on this rootfs.
 - At last, placements are as below.
 ![image](https://github.com/user-attachments/assets/1a11a602-090c-4237-b53c-b5ef44b2846a)
 
-- uEnv-nfs.txt
+- cp uEnv-nfs.txt /media/username/boot/uenv.txt
 - ![image](https://github.com/user-attachments/assets/b11e17dd-8e79-4b53-a766-f50c55e3786a)
+- ![image](https://github.com/user-attachments/assets/cdfd73e8-3cf8-4cf8-a363-7056dbb9e872)
 
+TFTP booting needs, dtb and uImage in /var/lib/tftp/* , as we're booting from tftp.
+![image](https://github.com/user-attachments/assets/f7b31f55-46c6-42da-bf7e-e0a5ced0e820)
+copy rootfs
+![image](https://github.com/user-attachments/assets/86bae707-d8f3-4379-ab62-fa8c27adc2c2)
+![image](https://github.com/user-attachments/assets/a24907ca-2e5f-4ff9-ba05-a9614f5c0574)
+
+host pc needs to give nfs client registration ($ vim /etc/exports)
+![image](https://github.com/user-attachments/assets/6ae648f5-e847-4feb-afd6-e207e3213c28)
+![image](https://github.com/user-attachments/assets/59893344-440b-42fe-a510-5aa2f2d67eb9)
+nfs configuration
+![image](https://github.com/user-attachments/assets/d38b6c62-42be-4454-86ad-fdf6a7dd629b)
+![image](https://github.com/user-attachments/assets/0b2531f5-5847-40fa-aa2f-6967a69e26a4)
+
+stuck, as ip is not configured on host system.
+uart logs.
+![image](https://github.com/user-attachments/assets/613eaec7-7ba3-460f-a7c2-1c9c8d788943)
+![image](https://github.com/user-attachments/assets/bfac2da2-c48f-4044-bf0d-cacf55b5cd84)
+![image](https://github.com/user-attachments/assets/1a6e257d-2349-42cf-a0b4-1d93666a4411)
+check on host terminal ifconfig
+![image](https://github.com/user-attachments/assets/6c9797e6-c78a-4b0f-924e-ded6be174864)
+
+open /etc/network/interfaces
+do static ip assignments
+![image](https://github.com/user-attachments/assets/8471007e-49d6-4618-bf90-e46f291b33d0)
+restart service to config ethernet ip address
+![image](https://github.com/user-attachments/assets/0d961c06-2f42-4f44-bce1-60272f1b2cdd)
+![image](https://github.com/user-attachments/assets/60f00dbe-615e-491a-96df-4e2c5fbdce2c)
+
+sudo minicom and boot from sd-card now
+![image](https://github.com/user-attachments/assets/6a2bbd9b-6d41-4ba3-b313-30231ac3215c)
+
+mounting succeed, but there are error related to tty devices. workaround is to create dev directory on nfs filesystem
+![image](https://github.com/user-attachments/assets/aa3a59c6-d14b-43e0-8aa0-d260ba151ce6)
+![image](https://github.com/user-attachments/assets/41a8d56d-9b6f-4514-853f-1b555b8fbc3e)
+now, reboot and boot through sd-card again
+![image](https://github.com/user-attachments/assets/68910294-4ccb-4f4f-9140-7bcff4670f85)
+after enter we get busybox console.
+
+first application linux launches from filesystem is init program(busybox init program), in sbin directory.
+from this init, one can bring up different services.
