@@ -15,7 +15,7 @@ module.dep
 - menuconfig if you want to exclude modueles or unnecessary board supported peripherals "$make ARCH=arm CROSS_COMPILE=~/arm-toolchain/arm- menuconfig"
 - build with "$make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- uImage dtbs RAMDISK_LOCATION -j4" (uboot header + zImage = uImage)
 - ~/arch/arm/boot/uImage, ~/arch/arm/boot/detbs/arm-335x-boneblack.dtb (keep in tftp or somewhere else.)
-- You should have 3 prebuilt bins: 1. u-boot.img, u-boot-spl.bin, MLO (MLO and u-boot.img are almost constant, and won't get changed - extra-> "for board", burn in SD.)
+- You should have 3 prebuilt bins: 1. u-boot.img, u-boot-spl.bin, MLO (MLO and u-boot.img are almost constant, and won't get changed - extra-> "for board", burn in SD. also keep uenv.txt to tell u-boot to mount rootfs, and load uImage from tftp server.)
 - rootfs(how to generate, written below) will be used via NFS protocol, and called as nfs mounting technique.
 - ![image](https://github.com/user-attachments/assets/975804f3-607e-435b-8a3b-145929cbc7c7)
 - ![image](https://github.com/user-attachments/assets/9867e1a2-3aa6-477d-bb52-68cf5d1b9d0e)
@@ -32,3 +32,6 @@ Build rootfs using busybox (busybox image contains all linux commands and tools 
 
 Now install loadable modules on this rootfs.
 - "$make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=<path_to_rfs> modules_install"
+
+- At last, placements are as below.
+![image](https://github.com/user-attachments/assets/1a11a602-090c-4237-b53c-b5ef44b2846a)
