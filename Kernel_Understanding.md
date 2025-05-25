@@ -35,3 +35,7 @@ Now install loadable modules on this rootfs.
 
 - At last, placements are as below.
 ![image](https://github.com/user-attachments/assets/1a11a602-090c-4237-b53c-b5ef44b2846a)
+
+- uEnv-nfs.txt
+- ![image](https://github.com/user-attachments/assets/b11e17dd-8e79-4b53-a766-f50c55e3786a)
+
