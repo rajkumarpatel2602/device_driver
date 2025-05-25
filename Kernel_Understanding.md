@@ -14,12 +14,12 @@ module.dep
 - build defconfig. build with "$make ARCH=arm CROSS_COMPILE=~/arm-toolchain/arm- defconfig"
 - menuconfig if you want to exclude modueles or unnecessary board supported peripherals "$make ARCH=arm CROSS_COMPILE=~/arm-toolchain/arm- menuconfig"
 - build with "$make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- uImage dtbs RAMDISK_LOCATION -j4" (uboot header + zImage = uImage)
-- ~/arch/arm/boot/uImage, ~/arch/arm/boot/detbs/your_bb_black.dtb
+- ~/arch/arm/boot/uImage, ~/arch/arm/boot/detbs/arm-335x-boneblack.dtb
 - You should have 3 prebuilt bins: 1. u-boot.img, u-boot-spl.bin, MLO
 - build out of tree mdoudes by "$make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules -j4"
 - Now to install on rootfs, build rootfs using busybox
 
-Build rootfs using busybox
+Build rootfs using busybox (busybox image contains all linux commands and tools and infact, all commands inside build is symlinked to ./bin/busybox. when complete build folder contains 1.4MB size, 1.3MB is of itself busybox.)
 - Download busybox
 - generate defconfig. "$make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- defconfig"
 - change default settings if you want make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
