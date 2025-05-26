@@ -80,3 +80,15 @@ after enter we get busybox console.
 
 first application linux launches from filesystem is init program(busybox init program), in sbin directory.
 from this init, one can bring up different services.
+
+## init process
+![image](https://github.com/user-attachments/assets/4138197a-031d-414b-8277-d0969dc5910d)
+init userspace application location // last step of kernel initialization. kernel_init of main.c of linux kernel, call for init is made.
+it has pid#1 and parent of all linux processes.
+![image](https://github.com/user-attachments/assets/703e71e0-0e29-4000-a31a-e9b9b4e14867)
+busybox init location
+![image](https://github.com/user-attachments/assets/9e6c27bf-cac8-4c3d-b5a7-1f84eaab4b72)
+![image](https://github.com/user-attachments/assets/fde208fb-58ce-49c6-97a0-b6b3f69e0959)
+we don't have rcS script in file system, and hence this script can't be executed from init process
+![image](https://github.com/user-attachments/assets/fdaecdba-6337-45e4-b2d6-9aaa33715cb6)
+![image](https://github.com/user-attachments/assets/b62e91e7-bbd0-45b5-93c2-96d52265c998)
