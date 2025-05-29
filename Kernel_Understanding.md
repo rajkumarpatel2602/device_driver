@@ -92,3 +92,4 @@ busybox init location
 we don't have rcS script in file system, and hence this script can't be executed from init process
 ![image](https://github.com/user-attachments/assets/fdaecdba-6337-45e4-b2d6-9aaa33715cb6)
 ![image](https://github.com/user-attachments/assets/b62e91e7-bbd0-45b5-93c2-96d52265c998)
+
