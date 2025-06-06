@@ -951,3 +951,10 @@ and based on that, of.h helper apis can be used.
 if pdata is null, then check if setupcode called this probe. and if that also fails, then message, no platform data available.
 ![image](https://github.com/user-attachments/assets/b17bf0dc-6e9b-485a-91ab-842f3c08c6c1)
 
+## Build root
+literally baap of everything. 
+creates u-boot.img, zImage, uImage, MLO (spl), rootfs using busybox, downaload and install cross-compiling toolchain. A complete package to get embedded board specific binary genration. 
+- make something_defconfig
+- make menuconfig
+- make -jn and boom.
+Everything just gets build in place in output directory. use these image, and transfer to your SD card and enjoy.
