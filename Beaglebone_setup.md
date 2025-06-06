@@ -295,12 +295,12 @@ dropbearkey -t dss -f dropbear_dss_host_key
 dropbearkey -t rsa -f dropbear_rsa_host_key
 
 6) run the dropbear 
-# dropbear
+$dropbear
 
 7) make a SSh connection from pc 
 ssh -l root 192.168.7.2
 
-# use this command to install an openssh server on your ubuntu host 
+## use this command to install an openssh server on your ubuntu host 
 sudo apt-get install openssh-server
 
 ## Build root
