@@ -303,3 +303,10 @@ ssh -l root 192.168.7.2
 # use this command to install an openssh server on your ubuntu host 
 sudo apt-get install openssh-server
 
+## Build root
+literally baap of everything. 
+creates u-boot.img, zImage, uImage, MLO (spl), rootfs using busybox, downaload and install cross-compiling toolchain. A complete package to get embedded board specific binary genration. 
+- make something_defconfig
+- make menuconfig
+- make -jn and boom.
+Everything just gets build in place in output directory. use these image, and transfer to your SD card and enjoy.
