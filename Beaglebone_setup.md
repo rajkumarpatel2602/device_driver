@@ -300,7 +300,7 @@ $dropbear
 7) make a SSh connection from pc 
 ssh -l root 192.168.7.2
 
-## use this command to install an openssh server on your ubuntu host 
+## To install an openssh server on your ubuntu host 
 sudo apt-get install openssh-server
 
 ## Build root
